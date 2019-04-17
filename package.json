@@ -1,6 +1,7 @@
 {
   "name": "ngx-onesignal",
   "version": "0.0.0",
+  "requiredAngularVersion": ">=7.0.0",
   "description": "angular 7+ OneSignal Service",
   "author": "M.Sakamaki <mail@m.sakamaki.jp>",
   "scripts": {
@@ -8,12 +9,14 @@
     "start": "ng serve --port 4000",
     "build.test": "ng build -c production && npx http-server -p 4000 ./dist/ngx-onesignal",
     "build": "ng build one-singal",
-    "format": "prettier src/**/*.ts tools/**/*.ts projects/**/*.ts --write",
+    "build.s":"rm -fr dist/schematics && npx tsc -p schematics/tsconfig.json && cp schematics/collection.json dist/schematics && cp schematics/ng-add/schema.json dist/schematics/ng-add",
+    "format": "prettier src/**/*.ts tools/**/*.ts projects/**/*.ts schematics/**/*.ts --write",
     "test": "ng test one-singal",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
   "main": "./bundles/one-singal.umd.js",
+  "schematics": "./dist/schematics/collection.json",
   "keywords": [
     "typescript",
     "Angular2",
@@ -28,6 +31,8 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",
     "@angular-devkit/build-ng-packagr": "~0.13.0",
+    "@angular-devkit/schematics": "~7.2.0",
+    "@angular-devkit/schematics-cli": "^0.13.8",
     "@angular/animations": "~7.2.0",
     "@angular/cli": "~7.3.1",
     "@angular/common": "~7.2.0",
