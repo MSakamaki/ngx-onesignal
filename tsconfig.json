@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@ngx-one-singal": [
+        "projects/one-singal/src/index.ts"
+      ],
+      "@ngx-one-singal/*": [
+        "projects/one-singal/*"
+      ]
+    }
   }
 }

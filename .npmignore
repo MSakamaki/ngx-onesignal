@@ -1,0 +1,17 @@
+# Ignores TypeScript files, but keeps definitions.
+*.ts
+!*.d.ts
+*.log
+.DS_Store
+Thumbs.db
+/dist/ngx-onesignal/*
+/e2e/*
+/projects/*
+/src/*
+node_modules
+angular.json
+tslint.json
+tsconfig.json
+README.md
+
+
