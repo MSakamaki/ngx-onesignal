@@ -19,11 +19,11 @@
       "dom"
     ],
     "paths": {
-      "@ngx-one-singal": [
-        "projects/one-singal/src/index.ts"
+      "ngx-onesignal": [
+        "projects/ngx-onesignal/src/public_api.ts"
       ],
-      "@ngx-one-singal/*": [
-        "projects/one-singal/*"
+      "ngx-onesignal/*": [
+        "projects/ngx-onesignal/*"
       ]
     }
   }

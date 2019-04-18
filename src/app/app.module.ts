@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { NgxOneSignalModule } from 'ngx-onesignal';
 import { AppComponent } from './app.component';
-import { NgxOneSingalModule } from '@ngx-one-singal';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { appId } from './onesignal-key';
@@ -10,7 +9,7 @@ import { appId } from './onesignal-key';
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    NgxOneSingalModule.forRoot({
+    NgxOneSignalModule.forRoot({
       appId,
       allowLocalhostAsSecureOrigin: true,
       autoRegister: false,

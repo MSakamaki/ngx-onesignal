@@ -1,0 +1,17 @@
+{
+  "$schema": "../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "ng-add": {
+      "description": "Adds Angular OneSignal to the application without affecting any templates",
+      "factory": "./ng-add/index#ngxOnesignal",
+      "schema": "./ng-add/schema.json",
+      "aliases": ["install"]
+    },
+    "setup": {
+      "description": "Sets up the specified project after the ng-add dependencies have been installed.",
+      "private": true,
+      "factory": "./ng-add/setup",
+      "schema": "./ng-add/schema.json"
+    }
+  }
+}

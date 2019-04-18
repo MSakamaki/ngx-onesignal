@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { OneSingalService } from './one-singal.service';
-import { OneSignalOptions } from '../one-singal.module';
+import { OneSignalService } from './one-signal.service';
+import { OneSignalOptions } from '../OneSignalOptions';
 
-describe('OneSingalService', () => {
+describe('OneSignalService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        OneSingalService,
+        OneSignalService,
         {
           provide: OneSignalOptions,
           useValue: {},
@@ -17,7 +17,7 @@ describe('OneSingalService', () => {
   });
 
   it('should be created', () => {
-    const service: OneSingalService = TestBed.get(OneSingalService);
+    const service: OneSignalService = TestBed.get(OneSignalService);
     expect(service).toBeTruthy();
   });
 });

@@ -10,6 +10,12 @@
       "$default": {
         "$source": "projectName"
       }
+    },
+    "appId": {
+      "type": "string",
+      "default": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+      "description": "Your OneSignal App Id",
+      "x-prompt": "What is your oneSignal appId?"
     }
   },
   "required": []

@@ -1,4 +1,4 @@
-import { OneSignalOptions } from './one-singal.module';
+import { OneSignalOptions } from './OneSignalOptions';
 
 export interface IOneSignal {
   init: (options: OneSignalOptions) => Promise<void>;

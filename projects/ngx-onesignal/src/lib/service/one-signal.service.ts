@@ -1,29 +1,27 @@
 import { Injectable, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { Cache } from '../decorator/cache.decolator';
-import { OneSignalOptions } from '../one-singal.module';
+import { OneSignalOptions, ONESIGNAL_CONFIGURATION } from '../OneSignalOptions';
 import { IOneSignal } from '../oneSignal';
 
 declare var OneSignal: IOneSignal;
 
-/** @dynamic */
+// @dynamic
 @Injectable({
   providedIn: 'root',
 })
-export class OneSingalService {
+export class OneSignalService {
   private scriptinitalize = false;
   private scriptURL = 'https://cdn.onesignal.com/sdks/OneSignalSDK.js';
 
-  @Cache({ pool: 'OneSignal' }) private hasSubscribe;
-  @Cache({ pool: 'OneSignal' }) private hasOptedOut;
-  @Cache({ pool: 'OneSignal' }) private supported;
-
-  public get isSupported(): boolean {
-    return this.supported;
+  public get isSupported(): Promise<boolean> {
+    return OneSignal.isPushNotificationsSupported();
   }
 
-  public get isSubscribe(): boolean {
-    return this.hasSubscribe && !this.hasOptedOut;
+  public get isSubscribe(): Promise<boolean> {
+    return Promise.all([
+      OneSignal.isPushNotificationsEnabled(),
+      OneSignal.isOptedOut(),
+    ]).then(([hasSubscribe, hasOptedOut]) => hasSubscribe && !hasOptedOut);
   }
 
   public get isInitialized(): boolean {
@@ -36,13 +34,11 @@ export class OneSingalService {
     } else {
       await OneSignal.registerForPushNotifications();
     }
-    await this.syncState();
   }
 
   public async unsubscribe() {
-    if (this.isSubscribe) {
+    if (await this.isSubscribe) {
       await OneSignal.setSubscription(false);
-      await this.syncState();
     }
   }
 
@@ -58,7 +54,6 @@ export class OneSingalService {
       if (!this.scriptinitalize) {
         await this.addScript();
         await this.initOneSignal();
-        await this.syncState();
         this.scriptinitalize = true;
       }
     } catch {
@@ -84,9 +79,9 @@ export class OneSingalService {
     });
   }
 
-  private async syncState() {
-    this.supported = await OneSignal.isPushNotificationsSupported();
-    this.hasSubscribe = await OneSignal.isPushNotificationsEnabled();
-    this.hasOptedOut = await OneSignal.isOptedOut();
-  }
+  // private async syncState() {
+  //   // this.supported = await OneSignal.isPushNotificationsSupported();
+  //   // this.hasSubscribe = await OneSignal.isPushNotificationsEnabled();
+  //   // this.hasOptedOut = await OneSignal.isOptedOut();
+  // }
 }

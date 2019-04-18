@@ -11,7 +11,7 @@ const log = (txt: string) => console.log(txt);
 const execLog = async (command: string, cwd?: string) =>
   exec(command, cwd).then(log);
 const cpDist = async (filename: string) =>
-  exec(`cp ${filename} dist/one-singal`);
+  exec(`cp ${filename} dist/one-signal`);
 
 (async () => {
   await execLog(`npm run build`);
@@ -19,7 +19,7 @@ const cpDist = async (filename: string) =>
   await cpDist('package.json');
   await cpDist('LICENSE');
 
-  await execLog(`npm publish`, 'dist/one-singal');
+  await execLog(`npm publish`, 'dist/one-signal');
 })().catch(e => {
   console.error(e);
 });

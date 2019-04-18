@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { OneSingalService } from '@ngx-one-singal';
+import { OneSignalService } from 'ngx-onesignal';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +7,7 @@ import { OneSingalService } from '@ngx-one-singal';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(public readonly onesignal: OneSingalService) {}
+  constructor(public readonly onesignal: OneSignalService) {}
 
   onSubscribe() {
     this.onesignal.subscribe();

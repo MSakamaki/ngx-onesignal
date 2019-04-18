@@ -5,7 +5,7 @@
       "dom"
     ],
     "rootDir": ".",
-    "outDir": "../dist/schematics",
+    "outDir": "../../dist/schematics",
     "declaration": true,
     "module": "commonjs",
     "moduleResolution": "node",
@@ -18,7 +18,7 @@
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "target": "es6",
     "types": [
       "jasmine",
