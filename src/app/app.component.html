@@ -2,10 +2,9 @@
   <h1>
     Angular One-Signal Web Push Example
   </h1>
-  {{ onesignal.isSubscribe }}
 
-  <button (click)="onSubscribe()" [disabled]="onesignal.isSubscribe" >subscribe</button>
+  <button (click)="onSubscribe()" >subscribe</button>
 
-  <button (click)="onUnSubscribe()" [disabled]="!onesignal.isSubscribe">unsubscribe</button>
+  <button (click)="onUnSubscribe()" >unsubscribe</button>
 
 </div>

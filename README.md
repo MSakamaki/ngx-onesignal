@@ -4,7 +4,7 @@ Angular 7+ [OneSignal](https://onesignal.com/) Service
 
 ## used
 
-### 1. Sign Up [OneSignal](https://onesignal.com/) 
+### 1. Sign Up [OneSignal](https://onesignal.com/)
 
 make Custom Code APP and get appId.
 
@@ -65,3 +65,4 @@ npm run serve:ssr
 + [x] universal
 + [ ] [nrwl/nx](https://nx.dev/) workspace support
 + [ ] ci/cd
++ [ ] api to rxjs

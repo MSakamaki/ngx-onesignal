@@ -14,14 +14,20 @@ export class OneSignalService {
   private scriptURL = 'https://cdn.onesignal.com/sdks/OneSignalSDK.js';
 
   public get isSupported(): Promise<boolean> {
-    return OneSignal.isPushNotificationsSupported();
+    if (this.scriptinitalize) {
+      return OneSignal.isPushNotificationsSupported();
+    }
+    return Promise.resolve(false);
   }
 
   public get isSubscribe(): Promise<boolean> {
-    return Promise.all([
-      OneSignal.isPushNotificationsEnabled(),
-      OneSignal.isOptedOut(),
-    ]).then(([hasSubscribe, hasOptedOut]) => hasSubscribe && !hasOptedOut);
+    if (this.scriptinitalize) {
+      return Promise.all([
+        OneSignal.isPushNotificationsEnabled(),
+        OneSignal.isOptedOut(),
+      ]).then(([hasSubscribe, hasOptedOut]) => hasSubscribe && !hasOptedOut);
+    }
+    return Promise.resolve(false);
   }
 
   public get isInitialized(): boolean {
