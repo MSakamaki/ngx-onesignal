@@ -10,18 +10,23 @@ make Custom Code APP and get appId.
 
 ### 2. run angular cli + add
 
+*`npx @angular/cli` will be replaced by the `ng` command if the angular cli is installed*
+
 ```sh
 # generate angular project
-npx ng new [project name]
+npx @angular/cli new [project name]
+
+# cahnge directory
+cd [project name]
 
 # add pwa
-npx ng add @angular/pwa
+npx @angular/cli add @angular/pwa
 
 # add onesignal
-npx ng add ngx-onesignal --appId=[ your onesignal appId ]
+npx @angular/cli add ngx-onesignal --appId=[your onesignal appId]
 
 # add universal
-npx ng add @nguniversal/express-engine --clientProject [project name]
+npx @angular/cli add @nguniversal/express-engine --clientProject [project name]
 
 ```
 
@@ -38,6 +43,11 @@ npm run build:ssr
 # run server ( http://localhost:4000 )
 npm run serve:ssr
 ```
+
+## Development environment support
+
++ OSX 10.x
++ node v10
 
 ## Tasks
 
