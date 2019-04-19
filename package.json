@@ -1,12 +1,12 @@
 {
   "name": "ngx-onesignal",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "requiredAngularVersion": ">=7.0.0",
   "description": "angular 7+ OneSignal Service",
   "author": "M.Sakamaki <mail@m.sakamaki.jp>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NaturalIntelligence/fast-xml-parser"
+    "url": "https://github.com/MSakamaki/ngx-onesignal"
   },
   "scripts": {
     "ng": "ng",
