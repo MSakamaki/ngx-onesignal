@@ -25,6 +25,7 @@ import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 import { Schema as ngxOneSignalSchema } from './schema';
 import { strings } from '@angular-devkit/core';
 import { readIntoSourceFile } from '../util/file';
+import { join } from 'path';
 
 export default function(options: ngxOneSignalSchema): Rule {
   return (tree: Tree, context: SchematicContext) => {
@@ -81,14 +82,14 @@ function updateAngularJson(options: ngxOneSignalSchema): Rule {
 
     if (targetOptions.assets) {
       targetOptions.assets = [
-        'src/OneSignalSDKWorker.js',
-        'src/OneSignalSDKUpdaterWorker.js',
+        join(project.sourceRoot, 'OneSignalSDKWorker.js'),
+        join(project.sourceRoot, 'OneSignalSDKUpdaterWorker.js'),
         ...targetOptions.assets
       ];
     } else {
       targetOptions.assets = [
-        'src/OneSignalSDKWorker.js',
-        'src/OneSignalSDKUpdaterWorker.js',
+        join(project.sourceRoot, 'OneSignalSDKWorker.js'),
+        join(project.sourceRoot, 'OneSignalSDKUpdaterWorker.js'),
       ];
     }
     tree.overwrite('angular.json', JSON.stringify(workspace, null, 2));
