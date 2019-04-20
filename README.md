@@ -2,6 +2,8 @@
 
 Angular 7+ [OneSignal](https://onesignal.com/) Service
 
+[![npm version](https://badge.fury.io/js/ngx-onesignal.svg)](https://badge.fury.io/js/ngx-onesignal)
+
 ## used
 
 ### 1. Sign Up [OneSignal](https://onesignal.com/)

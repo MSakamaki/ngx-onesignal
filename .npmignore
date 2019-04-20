@@ -10,6 +10,7 @@ Thumbs.db
 /src/*
 /schematics
 /sandbox
+/sandbox-nx
 node_modules
 angular.json
 tslint.json
