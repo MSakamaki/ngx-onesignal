@@ -65,4 +65,3 @@ npm run serve:ssr
 + [x] universal
 + [ ] [nrwl/nx](https://nx.dev/) workspace support
 + [ ] ci/cd
-+ [ ] api to rxjs

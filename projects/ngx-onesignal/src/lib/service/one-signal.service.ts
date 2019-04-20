@@ -1,9 +1,14 @@
 import { Injectable, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { OneSignalOptions, ONESIGNAL_CONFIGURATION } from '../OneSignalOptions';
-import { IOneSignal } from '../oneSignal';
+import {
+  OneSignalStub,
+  OneSignalOptions,
+  OneSignalStubFuncionList,
+} from '../interface';
+import { ExecIf } from '../decorators';
+import { BehaviorSubject } from 'rxjs';
 
-declare var OneSignal: IOneSignal;
+declare var OneSignal: OneSignalStub;
 
 // @dynamic
 @Injectable({
@@ -11,40 +16,53 @@ declare var OneSignal: IOneSignal;
 })
 export class OneSignalService {
   private scriptinitalize = false;
-  private scriptURL = 'https://cdn.onesignal.com/sdks/OneSignalSDK.js';
+  private readonly scriptURL = 'https://cdn.onesignal.com/sdks/OneSignalSDK.js';
 
-  public get isSupported(): Promise<boolean> {
-    if (this.scriptinitalize) {
-      return OneSignal.isPushNotificationsSupported();
-    }
-    return Promise.resolve(false);
+  private readonly isSupported$ = new BehaviorSubject<boolean>(false);
+  private readonly isSubscribe$ = new BehaviorSubject<boolean>(false);
+  private readonly isOptedOut$ = new BehaviorSubject<boolean>(false);
+  private readonly isPushNotificationsEnabled$ = new BehaviorSubject<boolean>(
+    false,
+  );
+
+  public get isSupported(): boolean {
+    return this.isSupported$.value;
   }
 
-  public get isSubscribe(): Promise<boolean> {
-    if (this.scriptinitalize) {
-      return Promise.all([
-        OneSignal.isPushNotificationsEnabled(),
-        OneSignal.isOptedOut(),
-      ]).then(([hasSubscribe, hasOptedOut]) => hasSubscribe && !hasOptedOut);
-    }
-    return Promise.resolve(false);
+  public get isSubscribe(): boolean {
+    return this.isSubscribe$.value;
   }
 
   public get isInitialized(): boolean {
     return this.scriptinitalize;
   }
 
-  public async subscribe() {
-    if (await OneSignal.isOptedOut()) {
-      await OneSignal.setSubscription(true);
-    } else {
-      await OneSignal.registerForPushNotifications();
+  @ExecIf('isInitialized')
+  public subscribe() {
+    if (this.isSupported) {
+      if (this.isOptedOut$.value) {
+        OneSignal.setSubscription(true);
+      } else {
+        OneSignal.registerForPushNotifications();
+      }
     }
   }
 
-  public async unsubscribe() {
-    if (await this.isSubscribe) {
-      await OneSignal.setSubscription(false);
+  /**
+   * call OneSignal.setSubscription(false)
+   * @see {@link https://documentation.onesignal.com/docs/web-push-sdk#section--setsubscription-}
+   */
+  @ExecIf('isInitialized')
+  public unsubscribe() {
+    if (this.isSubscribe) {
+      OneSignal.setSubscription(false);
+    }
+  }
+
+  @ExecIf('isInitialized')
+  public push(method: OneSignalStubFuncionList, value: undefined) {
+    if (this.isSupported) {
+      return OneSignal.push([method, value]);
     }
   }
 
@@ -83,11 +101,23 @@ export class OneSignalService {
     await OneSignal.init({
       ...this.options,
     });
-  }
 
-  // private async syncState() {
-  //   // this.supported = await OneSignal.isPushNotificationsSupported();
-  //   // this.hasSubscribe = await OneSignal.isPushNotificationsEnabled();
-  //   // this.hasOptedOut = await OneSignal.isOptedOut();
-  // }
+    await OneSignal.subscriptionChange(isSubscribed => {
+      this.isSubscribe$.next(isSubscribed);
+    });
+
+    // https://documentation.onesignal.com/docs/web-push-sdk#section-subscription-change
+    this.isSupported$.next(await OneSignal.isPushNotificationsSupported());
+    this.isPushNotificationsEnabled$.next(
+      await OneSignal.isPushNotificationsEnabled(),
+    );
+    this.isOptedOut$.next(await OneSignal.isOptedOut());
+
+    this.isSubscribe$.next(
+      await Promise.all([
+        OneSignal.isPushNotificationsEnabled(),
+        OneSignal.isOptedOut(),
+      ]).then(([hasSubscribe, hasOptedOut]) => hasSubscribe && !hasOptedOut),
+    );
+  }
 }

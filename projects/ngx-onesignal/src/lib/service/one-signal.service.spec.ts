@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { OneSignalService } from './one-signal.service';
-import { OneSignalOptions } from '../OneSignalOptions';
+import { OneSignalOptions } from '../interface';
 
 describe('OneSignalService', () => {
   beforeEach(() => {
