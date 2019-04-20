@@ -73,5 +73,5 @@ npm run serve:ssr
 + [ ] e2e testing
   + [ ] cypress
 + [x] universal
-+ [ ] [nrwl/nx](https://nx.dev/) workspace support
-+ [ ] ci/cd
++ [x] [nrwl/nx](https://nx.dev/) workspace support
++ [x] ci/cd
