@@ -8,7 +8,7 @@ Angular 7+ [OneSignal](https://onesignal.com/) Service
 [![Build Status](https://travis-ci.com/MSakamaki/ngx-onesignal.svg?branch=master)](https://travis-ci.com/MSakamaki/ngx-onesignal)
 [![Maintainability](https://api.codeclimate.com/v1/badges/493932302a1a925b8f12/maintainability)](https://codeclimate.com/github/MSakamaki/ngx-onesignal/maintainability)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
-[![Node version](https://img.shields.io/node/v/ngx-onesignal.svg?style=flat)](http://nodejs.org/download/)
+[![Node version](https://img.shields.io/node/v/ngx-onesignal?style=flat)](http://nodejs.org/download/)
 [![dependencies Status](https://david-dm.org/MSakamaki/ngx-onesignal/status.svg)](https://david-dm.org/MSakamaki/ngx-onesignal)
 [![HitCount](http://hits.dwyl.com/MSakamaki/ngx-onesignal.svg)](http://hits.dwyl.com/MSakamaki/ngx-onesignal)
 

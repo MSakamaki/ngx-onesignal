@@ -2,6 +2,10 @@
   "name": "ngx-onesignal",
   "version": "0.0.6",
   "requiredAngularVersion": ">=7.0.0",
+  "engines": {
+    "node": ">=10.6.0",
+    "npm": ">6.7.0"
+  },
   "description": "angular 7+ OneSignal Service",
   "author": "M.Sakamaki <mail@m.sakamaki.jp>",
   "repository": {
@@ -14,8 +18,8 @@
     "build.test": "ng build && npx http-server -p 4000 ./dist/client",
     "build": "ng build ngx-onesignal && npm run build.schematics",
     "build.schematics": "rm -fr dist/schematics && npx tsc -p tools/schematics/tsconfig.json && npx ts-node -P ./tools/scripts/tsconfig.json ./tools/scripts/copy.ts ",
-    "format": "prettier src/**/*.ts tools/**/*.ts projects/**/*.ts --write --progress=false --browsers=ChromeHeadlessCI",
-    "test": "ng test ngx-onesignal --watch=false",
+    "format": "prettier src/**/*.ts tools/**/*.ts projects/**/*.ts --write",
+    "test": "ng test ngx-onesignal --watch=false --progress=false --browsers=ChromeHeadlessCI",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "sandbox.clean": "git checkout HEAD -- sandbox sandbox-nx && git clean -f -d sandbox sandbox-nx",
