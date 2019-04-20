@@ -1,6 +1,10 @@
 # NgxOnesignal
 
-Angular 7+ [OneSignal](https://onesignal.com/) Service
+Angular [OneSignal](https://onesignal.com/)
+
+[![angular](https://img.shields.io/badge/angular-7-red.svg)](https://angular.io/)
+[![nrwl/nx](https://img.shields.io/badge/nx-7-blue.svg)](https://nx.dev/)
+[![one signal](https://img.shields.io/badge/OneSignal--Website--SDK-latest-e34b4d.svg)](https://github.com/OneSignal/OneSignal-Website-SDK)
 
 [![https://nodei.co/npm/ngx-onesignal.png?downloads=true&downloadRank=true&stars=true](https://nodei.co/npm/ngx-onesignal.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/ngx-onesignal)
 
