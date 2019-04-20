@@ -5,12 +5,14 @@
 .DS_Store
 Thumbs.db
 /dist/client
+/dist/browser
 /e2e/*
 /projects/*
 /src/*
 /schematics
 /sandbox
 /sandbox-nx
+/tools
 node_modules
 angular.json
 tslint.json
