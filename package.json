@@ -25,8 +25,8 @@
     "sandbox.nx.ng-add.local": "cd sandbox-nx && ng add @angular/pwa && HAS_SANDBOX=1 ng g ngx-onesignal:ng-add --appId=XXXXXXXX-XXXX",
     "sandbox.test": "npm run build && npm run sandbox.link && npm run sandbox.clean && npm run sandbox.ng-add.local && npm run sandbox.test:sandbox && npm run sandbox.nx.ng-add.local && npm run sandbox.nx.test:sandbox",
     "sandbox.test:unit": "npm run build.schematics && jasmine src/**/*_spec.js",
-    "sandbox.test:sandbox": "cd sandbox && npm run build && npm run lint  && npm run test -- --watch=false",
-    "sandbox.nx.test:sandbox": "cd sandbox-nx && npm run build && npm run lint  && npm run test -- --watch=false"
+    "sandbox.test:sandbox": "cd sandbox && npm run build && npm run lint  && npm run test -- --watch=false --progress=false --browsers=ChromeHeadlessCI",
+    "sandbox.nx.test:sandbox": "cd sandbox-nx && npm run build && npm run lint  && npm run test -- --watch=false --progress=false --browsers=ChromeHeadlessCI"
   },
   "main": "./dist/ngx-onesignal/bundles/ngx-onesignal.umd.js",
   "module": "./dist/ngx-onesignal/fesm5/ngx-onesignal.js",
