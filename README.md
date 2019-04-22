@@ -38,10 +38,6 @@ npx @angular/cli add @angular/pwa
 
 # add onesignal
 npx @angular/cli add ngx-onesignal --appId=[your onesignal appId]
-
-# add universal
-npx @angular/cli add @nguniversal/express-engine --clientProject [project name]
-
 ```
 
 ### 3. custmize angular app
@@ -51,6 +47,19 @@ see [sample code](https://github.com/MSakamaki/ngx-onesignal/tree/master/src/app
 ### 4. build and run
 
 ```sh
+# build production
+npx ng build --prod
+
+# npm run server
+npx http-server -p 4000 ./dist/client
+```
+
+### 5. add Universal
+
+```sh
+# add universal
+npx @angular/cli add @nguniversal/express-engine --clientProject [project name]
+
 # build universal
 npm run build:ssr
 
