@@ -12,6 +12,11 @@
     "type": "git",
     "url": "https://github.com/MSakamaki/ngx-onesignal"
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 4000",
@@ -73,11 +78,14 @@
     "@angular/pwa": "^0.12.4",
     "@angular/router": "~7.2.0",
     "@angular/service-worker": "~7.2.0",
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-conventional": "^7.5.0",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
     "core-js": "^2.5.4",
+    "husky": "^2.1.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.1.1",
