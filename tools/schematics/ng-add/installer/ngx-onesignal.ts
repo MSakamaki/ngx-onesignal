@@ -18,7 +18,7 @@ export function addPackageJsonDependencies(): Rule {
         const nodeDependency: NodeDependency = {
           type: NodeDependencyType.Default,
           name,
-          version: process.env.HAS_SANDBOX ? 'file:..' : appVersion,
+          version: process.env.HAS_SANDBOX ? 'file:../..' : appVersion,
           overwrite: false,
         };
         addPackageJsonDependency(tree, nodeDependency);
