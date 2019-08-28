@@ -48,6 +48,7 @@ Please follow the following guidelines:
 #### Commit Message Guidelines
 
 Comment according to [Conventional Commits](https://www.conventionalcommits.org/).
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 ##### type
 
