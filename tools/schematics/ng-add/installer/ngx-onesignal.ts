@@ -8,17 +8,15 @@ import { SchematicContext, Rule } from '@angular-devkit/schematics';
 
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { appVersion } from '../../util/versions';
 
-
-export function addPackageJsonDependencies(): Rule {
+export function addPackageJsonDependencies(pkgName: string, version: string, type: NodeDependencyType): Rule {
   return (tree: Tree, context: SchematicContext): Observable<Tree> => {
-    return of('ngx-onesignal').pipe(
+    return of(pkgName).pipe(
       map(name => {
         const nodeDependency: NodeDependency = {
-          type: NodeDependencyType.Default,
+          type,
           name,
-          version: process.env.HAS_SANDBOX ? 'file:../..' : appVersion,
+          version,
           overwrite: false,
         };
         addPackageJsonDependency(tree, nodeDependency);
