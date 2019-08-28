@@ -37,6 +37,10 @@ export class OneSignalService {
     return this.scriptinitalize;
   }
 
+  public get isOptedOut(): boolean {
+    return this.isOptedOut$.value;
+  }
+
   @ExecIf('isInitialized')
   public subscribe() {
     if (this.isSupported) {
@@ -102,7 +106,7 @@ export class OneSignalService {
       ...this.options,
     });
 
-    await OneSignal.subscriptionChange(isSubscribed => {
+    await OneSignal.on('subscriptionChange', isSubscribed => {
       this.isSubscribe$.next(isSubscribed);
     });
 

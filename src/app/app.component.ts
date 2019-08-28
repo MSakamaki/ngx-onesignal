@@ -7,7 +7,10 @@ import { OneSignalService } from 'ngx-onesignal';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(public readonly onesignal: OneSignalService) {}
+  constructor(public readonly onesignal: OneSignalService) {
+    // tslint:disable-next-line:no-angle-bracket-type-assertion
+    (<any> window).ngxOnesignal = onesignal;
+  }
 
   onSubscribe() {
     this.onesignal.subscribe();
