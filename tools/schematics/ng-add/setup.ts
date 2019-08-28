@@ -125,6 +125,12 @@ function replaceServiceWorkerScript(options: ngxOneSignalSchema): Rule {
       node => node.kind === ts.SyntaxKind.StringLiteral &&
       node.getText(sourceFile) === `'ngsw-worker.js'`
     );
+    if ( typeof serviceWorkerScript === 'undefined') {
+      context.logger.error(
+        `❌ @angular/pwa will not be added, please execute the following command 'npx ng add @angular/pwa'`
+      );
+      throw Error('@angular/pwa will not be added');
+    }
     const recorder = tree.beginUpdate(modulePath);
     recorder.remove(serviceWorkerScript.pos, serviceWorkerScript.getFullWidth());
     recorder.insertLeft(serviceWorkerScript.pos, insertion);

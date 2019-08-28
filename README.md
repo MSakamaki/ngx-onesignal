@@ -2,7 +2,7 @@
 
 Angular [OneSignal](https://onesignal.com/)
 
-[![angular](https://img.shields.io/badge/angular-7-red.svg)](https://angular.io/)
+[![angular](https://img.shields.io/badge/angular-8-red.svg)](https://angular.io/)
 [![nrwl/nx](https://img.shields.io/badge/nx-7-blue.svg)](https://nx.dev/)
 [![one signal](https://img.shields.io/badge/OneSignal--Website--SDK-latest-e34b4d.svg)](https://github.com/OneSignal/OneSignal-Website-SDK)
 
@@ -13,6 +13,7 @@ Angular [OneSignal](https://onesignal.com/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/493932302a1a925b8f12/maintainability)](https://codeclimate.com/github/MSakamaki/ngx-onesignal/maintainability)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 [![Node version](https://img.shields.io/node/v/ngx-onesignal.svg?style=flat)](http://nodejs.org/download/)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![dependencies Status](https://david-dm.org/MSakamaki/ngx-onesignal/status.svg)](https://david-dm.org/MSakamaki/ngx-onesignal)
 [![HitCount](http://hits.dwyl.com/MSakamaki/ngx-onesignal.svg)](http://hits.dwyl.com/MSakamaki/ngx-onesignal)
 
