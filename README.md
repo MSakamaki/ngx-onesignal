@@ -52,7 +52,7 @@ see [sample code](https://github.com/MSakamaki/ngx-onesignal/tree/master/src/app
 npx ng build --prod
 
 # npm run server
-npx http-server -p 4000 ./dist/client
+npx light-server -s ./dist/client -p 4000 --historyindex /index.html
 ```
 
 ### 5. add Universal

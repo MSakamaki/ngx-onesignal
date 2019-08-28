@@ -1,6 +1,6 @@
 {
   "name": "ngx-onesignal",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "requiredAngularVersion": ">=7.0.0",
   "engines": {
     "node": ">=10.6.0",
