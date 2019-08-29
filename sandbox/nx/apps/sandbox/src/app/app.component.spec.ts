@@ -14,10 +14,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'nx-app'`, () => {
+  it(`should have as title 'sandbox'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('nx-app');
+    expect(app.title).toEqual('sandbox');
   });
 
   it('should render title in a h1 tag', () => {
@@ -25,7 +25,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain(
-      'Welcome to nx-app!'
+      'Welcome to sandbox!'
     );
   });
 });

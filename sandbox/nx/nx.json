@@ -1,5 +1,5 @@
 {
-  "npmScope": "sandbox-nx",
+  "npmScope": "nx-v8",
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": "*",
@@ -8,10 +8,10 @@
     "nx.json": "*"
   },
   "projects": {
-    "nx-app": {
+    "sandbox-e2e": {
       "tags": []
     },
-    "nx-app-e2e": {
+    "sandbox": {
       "tags": []
     }
   }
