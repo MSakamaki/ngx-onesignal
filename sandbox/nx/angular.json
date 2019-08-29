@@ -1,33 +1,35 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "",
   "projects": {
-    "nx-app": {
-      "root": "apps/nx-app/",
-      "sourceRoot": "apps/nx-app/src",
+    "sandbox": {
       "projectType": "application",
-      "prefix": "sandbox-nx",
       "schematics": {},
+      "root": "apps/sandbox",
+      "sourceRoot": "apps/sandbox/src",
+      "prefix": "nx-v8",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/nx-app",
-            "index": "apps/nx-app/src/index.html",
-            "main": "apps/nx-app/src/main.ts",
-            "polyfills": "apps/nx-app/src/polyfills.ts",
-            "tsConfig": "apps/nx-app/tsconfig.app.json",
-            "assets": ["apps/nx-app/src/favicon.ico", "apps/nx-app/src/assets"],
-            "styles": ["apps/nx-app/src/styles.css"],
+            "outputPath": "dist/apps/sandbox",
+            "index": "apps/sandbox/src/index.html",
+            "main": "apps/sandbox/src/main.ts",
+            "polyfills": "apps/sandbox/src/polyfills.ts",
+            "tsConfig": "apps/sandbox/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/sandbox/src/favicon.ico",
+              "apps/sandbox/src/assets"
+            ],
+            "styles": ["apps/sandbox/src/styles.css"],
             "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/nx-app/src/environments/environment.ts",
-                  "with": "apps/nx-app/src/environments/environment.prod.ts"
+                  "replace": "apps/sandbox/src/environments/environment.ts",
+                  "with": "apps/sandbox/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -52,91 +54,79 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "nx-app:build"
+            "browserTarget": "sandbox:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "nx-app:build:production"
+              "browserTarget": "sandbox:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "nx-app:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "apps/nx-app/src/test.ts",
-            "polyfills": "apps/nx-app/src/polyfills.ts",
-            "tsConfig": "apps/nx-app/tsconfig.spec.json",
-            "karmaConfig": "apps/nx-app/karma.conf.js",
-            "styles": ["apps/nx-app/src/styles.css"],
-            "scripts": [],
-            "assets": ["apps/nx-app/src/favicon.ico", "apps/nx-app/src/assets"]
+            "browserTarget": "sandbox:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/nx-app/tsconfig.app.json",
-              "apps/nx-app/tsconfig.spec.json"
+              "apps/sandbox/tsconfig.app.json",
+              "apps/sandbox/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/sandbox/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/sandbox/jest.config.js",
+            "tsConfig": "apps/sandbox/tsconfig.spec.json",
+            "setupFile": "apps/sandbox/src/test-setup.ts"
           }
         }
       }
     },
-    "nx-app-e2e": {
-      "root": "apps/nx-app-e2e",
+    "sandbox-e2e": {
+      "root": "apps/sandbox-e2e",
+      "sourceRoot": "apps/sandbox-e2e/src",
       "projectType": "application",
-      "prefix": "",
       "architect": {
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@nrwl/cypress:cypress",
           "options": {
-            "protractorConfig": "apps/nx-app-e2e/protractor.conf.js",
-            "devServerTarget": "nx-app:serve"
+            "cypressConfig": "apps/sandbox-e2e/cypress.json",
+            "tsConfig": "apps/sandbox-e2e/tsconfig.e2e.json",
+            "devServerTarget": "sandbox:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "nx-app:serve:production"
+              "devServerTarget": "sandbox:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "apps/nx-app-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": ["apps/sandbox-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/sandbox-e2e/**"]
           }
         }
       }
     }
   },
   "cli": {
-    "warnings": {
-      "typescriptMismatch": false,
-      "versionMismatch": false
-    },
-    "defaultCollection": "@nrwl/schematics",
-    "packageManager": "npm"
+    "defaultCollection": "@nrwl/angular"
   },
   "schematics": {
-    "@nrwl/schematics:library": {
-      "unitTestRunner": "karma",
-      "framework": "angular"
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
     },
-    "@nrwl/schematics:application": {
-      "unitTestRunner": "karma",
-      "e2eTestRunner": "protractor"
-    },
-    "@nrwl/schematics:node-application": {
-      "framework": "express"
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
     }
   },
-  "defaultProject": "nx-app"
+  "defaultProject": "sandbox"
 }
