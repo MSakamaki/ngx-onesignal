@@ -5,8 +5,8 @@ import {
 } from '@schematics/angular/utility/dependencies';
 import { Tree } from '@angular-devkit/schematics/src/tree/interface';
 import { SchematicContext, Rule } from '@angular-devkit/schematics';
-import { of } from '@angular-devkit/schematics/node_modules/rxjs';
-import { map } from '@angular-devkit/schematics/node_modules/rxjs/operators';
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 export function addPackageJsonDependencies(pkgName: string, version: string, type: NodeDependencyType): Rule {
   return (tree: Tree, context: SchematicContext): any => {
