@@ -39,7 +39,7 @@
     "sandbox.test:unit": "npm run build.schematics && jasmine src/**/*_spec.js",
     "sandbox.7.test:sandbox": "cd sandbox/7 && npm run build -- --prod && npm run lint  && npm run test -- --watch=false --progress=false --browsers=ChromeHeadlessCI",
     "sandbox.8.test:sandbox": "cd sandbox/8 && npm run build -- --prod && npm run lint  && npm run test -- --watch=false --progress=false --browsers=ChromeHeadlessCI",
-    "sandbox.nx.test:sandbox": "cd sandbox/nx && npm run build -- --prod && npm run lint  && npm run test -- --watch=false --progress=false --browsers=ChromeHeadlessCI"
+    "sandbox.nx.test:sandbox": "cd sandbox/nx && npm run build -- --prod && npm run lint  && npm run test -- --watch=false"
   },
   "main": "./dist/ngx-onesignal/bundles/ngx-onesignal.umd.js",
   "module": "./dist/ngx-onesignal/fesm5/ngx-onesignal.js",
