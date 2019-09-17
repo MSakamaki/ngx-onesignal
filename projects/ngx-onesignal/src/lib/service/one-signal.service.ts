@@ -63,10 +63,24 @@ export class OneSignalService {
     }
   }
 
+  /**
+   * https://documentation.onesignal.com/docs/web-push-sdk#section-loading-sdk-asynchronously
+   * @param items push(["functionName", param1, param2]);
+   * @example
+   * ngxOneSignal.push(['sendTag', 'key', 'value', function(tagsSent) {
+   *   // Callback called when tags have finished sending
+   * }]);
+   * // or
+   * ngxOneSignal.push(['sendTag', 'key', 'value']).then((tagsSent) => {
+   *   // Callback called when tags have finished sending
+   * });
+   */
   @ExecIf('isInitialized')
-  public push(method: OneSignalStubFuncionList, value: undefined) {
+  public push(items: undefined[]) {
     if (this.isSupported) {
-      return OneSignal.push([method, value]);
+      return OneSignal.push(items);
+    } else {
+      return Promise.resolve();
     }
   }
 
