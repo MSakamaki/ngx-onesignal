@@ -4,6 +4,9 @@
 /dist
 /tmp
 /out-tsc
+/tools/ssh/*.key
+/tools/ssh/*.crt
+/tools/ssh/*.csr
 
 # dependencies
 /node_modules

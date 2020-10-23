@@ -3,8 +3,16 @@
     Angular One-Signal Web Push Example
   </h1>
 
+  <p> USER ID: {{onesignal.userId$ | async}}</p>
+  <p> TAGS: {{tags$ | async | json}}</p>
+  
+
   <button (click)="onSubscribe()" >subscribe</button>
 
   <button (click)="onUnSubscribe()" >unsubscribe</button>
+  <br>
+  <button (click)="testPush()" >TestPushMethod</button>
+
+  <button (click)="getTags()" >getTag</button>
 
 </div>

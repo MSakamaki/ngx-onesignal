@@ -42,7 +42,7 @@ Please follow the following guidelines:
 - Make sure unit tests pass
 - Make sure sandbox tests pass
 - Make sure `npm run lint` pass
-- Make sure you run `yarn format`
+- Make sure you run `npm format`
 - Update your commit message to follow the guidelines below
 
 #### Commit Message Guidelines

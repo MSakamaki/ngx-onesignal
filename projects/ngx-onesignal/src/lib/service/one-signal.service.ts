@@ -24,6 +24,8 @@ export class OneSignalService {
   private readonly isPushNotificationsEnabled$ = new BehaviorSubject<boolean>(
     false,
   );
+  private readonly userIdSubject$ = new BehaviorSubject<string | null>(null);
+  public readonly userId$ = this.userIdSubject$.asObservable();
 
   public get isSupported(): boolean {
     return this.isSupported$.value;
@@ -39,6 +41,10 @@ export class OneSignalService {
 
   public get isOptedOut(): boolean {
     return this.isOptedOut$.value;
+  }
+
+  public get userId(): string {
+    return this.userIdSubject$.value;
   }
 
   @ExecIf('isInitialized')
@@ -76,7 +82,7 @@ export class OneSignalService {
    * });
    */
   @ExecIf('isInitialized')
-  public push(items: undefined[]) {
+  public push(items: any[]) {
     if (this.isSupported) {
       return OneSignal.push(items);
     } else {
@@ -137,5 +143,6 @@ export class OneSignalService {
         OneSignal.isOptedOut(),
       ]).then(([hasSubscribe, hasOptedOut]) => hasSubscribe && !hasOptedOut),
     );
+    this.userIdSubject$.next(await OneSignal.getUserId());
   }
 }

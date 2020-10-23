@@ -41,7 +41,7 @@ npx @angular/cli add @angular/pwa
 npx @angular/cli add ngx-onesignal --appId=[your onesignal appId]
 ```
 
-### 3. custmize angular app
+### 3. custmize Angular app
 
 see [sample code](https://github.com/MSakamaki/ngx-onesignal/tree/master/src/app)
 
@@ -52,7 +52,10 @@ see [sample code](https://github.com/MSakamaki/ngx-onesignal/tree/master/src/app
 npx ng build --prod
 
 # npm run server
-npx light-server -s ./dist/client -p 4000 --historyindex /index.html
+npx http-server ./dist/client -p 4000 -S -K tools/ssh/server.key -C tools/ssh/server.crt
+
+# open onesignal https webpage
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --ignore-certificate-errors --user-data-dir=dist/chromeTemp
 ```
 
 ### 5. add Universal
@@ -80,7 +83,7 @@ npm run serve:ssr
 + [x] ng_add
   + [x] add NgxOneSignalModule to root module
   + [x] add OneSignalSDKWorkers file
-  + [x] add OneSignalSDKWorkers to angular.json
+  + [x] add OneSignalSDKWorkers to `angular.json`
   + [x] replace ServiceWorkerModule.register file
 + [x] [sandbox test](https://www.kevinschuchard.com/blog/2018-11-20-schematic-sandbox/)
 + [ ] unit testing

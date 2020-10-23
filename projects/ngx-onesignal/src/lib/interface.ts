@@ -40,7 +40,9 @@ export interface OneSignalStub {
   registerForPushNotifications: () => Promise<void>;
   getUserId: () => Promise<string>;
   setSubscription: (unmute: boolean) => Promise<void>;
-  isPushNotificationsEnabled: () => Promise<boolean>;
+  isPushNotificationsEnabled: (
+    cb?: (isEnabled: boolean) => void,
+  ) => Promise<boolean>;
   isOptedOut: () => Promise<boolean>;
   isPushNotificationsSupported: () => Promise<boolean>;
   subscriptionChange: (fnc: (isSubscribed: boolean) => void) => Promise<void>;
