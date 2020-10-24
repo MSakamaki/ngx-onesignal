@@ -7,8 +7,61 @@ import {
 } from '../interface';
 import { ExecIf } from '../decorators';
 import { BehaviorSubject } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
 
 declare var OneSignal: OneSignalStub;
+
+interface OnsSignalSubscribed {
+  isSubscribed: boolean;
+  userId: string;
+  registrationId: string;
+  notificationPermission: string;
+  optedOut: boolean;
+  serviceWorkerActive: string;
+}
+
+const isSubscribe = ({
+  isSubscribed,
+  userId,
+  registrationId,
+  notificationPermission,
+  optedOut,
+  serviceWorkerActive,
+}: OnsSignalSubscribed): boolean =>
+  isSubscribed &&
+  Boolean(userId) &&
+  Boolean(registrationId) &&
+  notificationPermission === 'granted' &&
+  optedOut === false &&
+  Boolean(serviceWorkerActive);
+
+const hasSubsctibed = (
+  oneSignal: OneSignalStub,
+): Promise<OnsSignalSubscribed> =>
+  Promise.all([
+    oneSignal.isPushNotificationsEnabled(),
+    oneSignal.getUserId(),
+    oneSignal.getRegistrationId(),
+    oneSignal.getNotificationPermission(),
+    oneSignal.isOptedOut(),
+    oneSignal.context.serviceWorkerManager.getActiveState(),
+  ]).then(
+    ([
+      isSubscribed,
+      userId,
+      registrationId,
+      notificationPermission,
+      optedOut,
+      serviceWorkerActive,
+    ]) => ({
+      isSubscribed,
+      userId,
+      registrationId,
+      notificationPermission,
+      optedOut,
+      serviceWorkerActive,
+    }),
+  );
 
 // @dynamic
 @Injectable({
@@ -18,21 +71,49 @@ export class OneSignalService {
   private scriptinitalize = false;
   private readonly scriptURL = 'https://cdn.onesignal.com/sdks/OneSignalSDK.js';
 
-  private readonly isSupported$ = new BehaviorSubject<boolean>(false);
-  private readonly isSubscribe$ = new BehaviorSubject<boolean>(false);
-  private readonly isOptedOut$ = new BehaviorSubject<boolean>(false);
-  private readonly isPushNotificationsEnabled$ = new BehaviorSubject<boolean>(
-    false,
-  );
+  private readonly isSupportedSubject$ = new BehaviorSubject<boolean>(false);
+  private readonly SubscribeStateSubject$ = new BehaviorSubject<
+    OnsSignalSubscribed
+  >({
+    isSubscribed: false,
+    userId: '',
+    registrationId: '',
+    notificationPermission: '',
+    optedOut: true,
+    serviceWorkerActive: '',
+  });
+  private readonly isOptedOutSubject$ = new BehaviorSubject<boolean>(false);
+  private readonly isPushNotificationsEnabledSubject$ = new BehaviorSubject<
+    boolean
+  >(false);
   private readonly userIdSubject$ = new BehaviorSubject<string | null>(null);
+
+  /**
+   * @see {@link https://documentation.onesignal.com/docs/web-push-sdk#ispushnotificationssupported}
+   */
+  public readonly isSupported$ = this.isSupportedSubject$.asObservable();
+  /**
+   * @see {@link https://documentation.onesignal.com/docs/web-push-sdk#ispushnotificationsenabled}
+   */
+  public readonly isPushNotificationsEnabled$ = this.isPushNotificationsEnabledSubject$.asObservable();
+  /**
+   * @see {@link https://documentation.onesignal.com/docs/troubleshooting-web-push#3-check-if-you-are-subscribed}
+   */
+  public readonly subscribeState$ = this.SubscribeStateSubject$.asObservable().pipe(
+    shareReplay(1),
+  );
+  /**
+   * @see {@link https://documentation.onesignal.com/docs/troubleshooting-web-push#3-check-if-you-are-subscribed}
+   */
+  public readonly isSubscribe$ = this.subscribeState$.pipe(map(isSubscribe));
   public readonly userId$ = this.userIdSubject$.asObservable();
 
   public get isSupported(): boolean {
-    return this.isSupported$.value;
+    return this.isSupportedSubject$.value;
   }
 
   public get isSubscribe(): boolean {
-    return this.isSubscribe$.value;
+    return isSubscribe(this.SubscribeStateSubject$.value);
   }
 
   public get isInitialized(): boolean {
@@ -40,7 +121,7 @@ export class OneSignalService {
   }
 
   public get isOptedOut(): boolean {
-    return this.isOptedOut$.value;
+    return this.isOptedOutSubject$.value;
   }
 
   public get userId(): string {
@@ -50,7 +131,7 @@ export class OneSignalService {
   @ExecIf('isInitialized')
   public subscribe() {
     if (this.isSupported) {
-      if (this.isOptedOut$.value) {
+      if (this.isOptedOutSubject$.value) {
         OneSignal.setSubscription(true);
       } else {
         OneSignal.registerForPushNotifications();
@@ -126,23 +207,19 @@ export class OneSignalService {
       ...this.options,
     });
 
-    await OneSignal.on('subscriptionChange', isSubscribed => {
-      this.isSubscribe$.next(isSubscribed);
+    await OneSignal.on('subscriptionChange', async () => {
+      this.SubscribeStateSubject$.next(await hasSubsctibed(OneSignal));
     });
 
     // https://documentation.onesignal.com/docs/web-push-sdk#section-subscription-change
-    this.isSupported$.next(await OneSignal.isPushNotificationsSupported());
-    this.isPushNotificationsEnabled$.next(
+    this.isSupportedSubject$.next(
+      await OneSignal.isPushNotificationsSupported(),
+    );
+    this.isPushNotificationsEnabledSubject$.next(
       await OneSignal.isPushNotificationsEnabled(),
     );
-    this.isOptedOut$.next(await OneSignal.isOptedOut());
-
-    this.isSubscribe$.next(
-      await Promise.all([
-        OneSignal.isPushNotificationsEnabled(),
-        OneSignal.isOptedOut(),
-      ]).then(([hasSubscribe, hasOptedOut]) => hasSubscribe && !hasOptedOut),
-    );
+    this.isOptedOutSubject$.next(await OneSignal.isOptedOut());
+    this.SubscribeStateSubject$.next(await hasSubsctibed(OneSignal));
     this.userIdSubject$.next(await OneSignal.getUserId());
   }
 }

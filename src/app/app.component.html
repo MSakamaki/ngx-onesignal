@@ -5,7 +5,10 @@
 
   <p> USER ID: {{onesignal.userId$ | async}}</p>
   <p> TAGS: {{tags$ | async | json}}</p>
-  
+
+  <p> is subscribe: {{onesignal.isSubscribe$ | async}}</p>
+  <p> is subscribe: {{onesignal.subscribeState$ | async | json}}</p>
+  <p> is supported: {{onesignal.isSupported$ | async}}</p>
 
   <button (click)="onSubscribe()" >subscribe</button>
 

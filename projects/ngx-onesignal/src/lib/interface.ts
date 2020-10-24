@@ -39,6 +39,8 @@ export interface OneSignalStub {
   init: (options: OneSignalOptions) => Promise<void>;
   registerForPushNotifications: () => Promise<void>;
   getUserId: () => Promise<string>;
+  getRegistrationId: () => Promise<any>;
+  getNotificationPermission: () => Promise<any>;
   setSubscription: (unmute: boolean) => Promise<void>;
   isPushNotificationsEnabled: (
     cb?: (isEnabled: boolean) => void,
@@ -49,6 +51,15 @@ export interface OneSignalStub {
 
   push: (fnc: Array<string | any>) => Promise<any>;
   on: (func: string, callback: (result: any) => void) => void;
+
+  context: {
+    serviceWorkerManager: {
+      getActiveState: () => Promise<string>;
+    };
+  };
+  sdkEnvironment: {
+    getWindowEnv: () => Promise<string>;
+  };
 }
 
 /**
