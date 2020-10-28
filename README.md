@@ -2,7 +2,7 @@
 
 Angular [OneSignal](https://onesignal.com/)
 
-[![angular](https://img.shields.io/badge/angular-8+-red.svg)](https://angular.io/)
+[![angular](https://img.shields.io/badge/angular-9+-red.svg)](https://angular.io/)
 [![nrwl/nx](https://img.shields.io/badge/nx-8-blue.svg)](https://nx.dev/)
 [![one signal](https://img.shields.io/badge/OneSignal--Website--SDK-latest-e34b4d.svg)](https://github.com/OneSignal/OneSignal-Website-SDK)
 
