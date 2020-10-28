@@ -23,7 +23,7 @@ Angular [OneSignal](https://onesignal.com/)
 
 make Custom Code APP and get appId.
 
-### 2. run angular cli + add
+### 2. run Angular cli + add
 
 *`npx @angular/cli` will be replaced by the `ng` command if the angular cli is installed*
 
