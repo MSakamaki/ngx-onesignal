@@ -33,7 +33,7 @@
     "update:npm": "ncu '/^(@angular-devkit/schematics-cli|@angular/pwa|ng-packagr|husky|@commitlint|codelyzer|karma).*$/'",
     "sandbox.pack": "npm pack . && mv ngx-onesignal-*.tgz sandbox/ngx-onesignal.tgz",
     "sandbox.clean": "git checkout HEAD -- sandbox && git clean -f -d sandbox && git status",
-    "sandbox.link": "npm link && cd ../8 && npm link ngx-onesignal && cd ../nx && npm link ngx-onesignal",
+    "sandbox.link": "npm link && cd sandbox/8 && npm link ngx-onesignal && cd ../nx && npm link ngx-onesignal",
     "sandbox.8.ng-add.local": "cd sandbox/8 && ng add @angular/pwa && HAS_SANDBOX=1 ng g ngx-onesignal:ng-add --appId=XXXXXXXX-XXXX",
     "sandbox.10.ng-add.local": "cd sandbox/10 && ng add @angular/pwa && npm link ngx-onesignal && HAS_SANDBOX=1 ng g ngx-onesignal:ng-add --appId=XXXXXXXX-XXXX",
     "sandbox.8.ng-add.universal": "cd sandbox/8 && ng add @angular/pwa && ng g ngx-onesignal:ng-add --appId=XXXXXXXX-XXXX && ng add @nguniversal/express-engine --clientProject sandbox",
