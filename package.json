@@ -3,7 +3,7 @@
   "version": "10.0.0",
   "requiredAngularVersion": ">=9.0.0",
   "engines": {
-    "node": ">=10.6.0",
+    "node": ">=12",
     "npm": ">6.7.0"
   },
   "description": "angular 9+ OneSignal Service",
@@ -19,9 +19,9 @@
   },
   "scripts": {
     "ng": "ng",
-    "preinstall": "npx check-node-version --node 10",
-    "prestart": "check-node-version --node 10",
-    "pretest": "check-node-version --node 10",
+    "preinstall": "npx check-node-version --node 12",
+    "prestart": "check-node-version --node 12",
+    "pretest": "check-node-version --node 12",
     "start": "ng serve --port 4000 --ssl true --ssl-key \"tools/ssh/server.key\" --ssl-cert \"tools/ssh/server.crt\"",
     "build.test": "ng build --prod && npx http-server ./dist/client -p 4000 -S -K tools/ssh/server.key -C tools/ssh/server.crt",
     "build": "ng build ngx-onesignal && npm run build.schematics",
