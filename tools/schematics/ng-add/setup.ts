@@ -17,7 +17,6 @@ import {
   getProjectMainFile,
   hasNgModuleImport,
   getProjectTargetOptions,
-  ts,
 } from '@angular/cdk/schematics';
 import { getWorkspace } from '@schematics/angular/utility/config';
 import { getSourceNodes } from '@schematics/angular/utility/ast-utils';
@@ -26,6 +25,7 @@ import { Schema as ngxOneSignalSchema } from './schema';
 import { strings } from '@angular-devkit/core';
 import { readIntoSourceFile } from '../util/file';
 import { join } from 'path';
+import ts = require('typescript');
 
 export default function(options: ngxOneSignalSchema): Rule {
   return (tree: Tree, context: SchematicContext) => {

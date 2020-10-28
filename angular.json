@@ -28,8 +28,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -53,6 +52,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ],
               "serviceWorker": true,

@@ -1,8 +1,7 @@
 import { Tree } from '@angular-devkit/schematics/src/tree/interface';
 import { SchematicsException } from '@angular-devkit/schematics';
 import { SourceFile } from 'typescript';
-import { ts } from '@angular/cdk/schematics';
-
+import ts = require('typescript');
 
 export function readIntoSourceFile(host: Tree, fileName: string): SourceFile {
   const buffer = host.read(fileName);

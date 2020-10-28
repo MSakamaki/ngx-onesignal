@@ -2,7 +2,7 @@
 
 Angular [OneSignal](https://onesignal.com/)
 
-[![angular](https://img.shields.io/badge/angular-7+-red.svg)](https://angular.io/)
+[![angular](https://img.shields.io/badge/angular-9+-red.svg)](https://angular.io/)
 [![nrwl/nx](https://img.shields.io/badge/nx-8-blue.svg)](https://nx.dev/)
 [![one signal](https://img.shields.io/badge/OneSignal--Website--SDK-latest-e34b4d.svg)](https://github.com/OneSignal/OneSignal-Website-SDK)
 
@@ -23,7 +23,7 @@ Angular [OneSignal](https://onesignal.com/)
 
 make Custom Code APP and get appId.
 
-### 2. run angular cli + add
+### 2. run Angular cli + add
 
 *`npx @angular/cli` will be replaced by the `ng` command if the angular cli is installed*
 
@@ -71,10 +71,19 @@ npm run build:ssr
 npm run serve:ssr
 ```
 
+## Supported
+
+|  Angular version  |  ngx-onestop version  | support |
+| ---- | ---- | ---- |
+|  10  | 10.x  | ○ |
+|  9  |  10.x  | ○ |
+|  8  |  8.x  | - |
+|  7  |  8.x  | - |
+
 ## Development environment support
 
 + OSX 10.x
-+ node v10
++ node v12
 
 ## Tasks
 
