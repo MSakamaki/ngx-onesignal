@@ -83,7 +83,7 @@ npm run serve:ssr
 ## Development environment support
 
 + OSX 10.x
-+ node v10
++ node v12
 
 ## Tasks
 

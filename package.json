@@ -1,6 +1,6 @@
 {
   "name": "ngx-onesignal",
-  "version": "10.0.0-beta.0",
+  "version": "10.0.0-beta.1",
   "requiredAngularVersion": ">=9.0.0",
   "engines": {
     "node": ">=12",
@@ -64,7 +64,9 @@
   ],
   "license": "MIT",
   "private": false,
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@angular/cdk": "^10.2.6"
+  },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1002.0",
     "@angular-devkit/build-ng-packagr": "~0.1002.0",
