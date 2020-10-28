@@ -71,6 +71,15 @@ npm run build:ssr
 npm run serve:ssr
 ```
 
+## Supported
+
+|  Angular version  |  ngx-onestop version  | support |
+| ---- | ---- | ---- |
+|  10  | 10.x  | ○ |
+|  9  |  10.x  | ○ |
+|  8  |  8.x  | - |
+|  7  |  8.x  | - |
+
 ## Development environment support
 
 + OSX 10.x
